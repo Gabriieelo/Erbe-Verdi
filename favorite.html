@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erbe Verdi Opinion</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1>Erbe Verdi Opinion</h1>
+        <div class="nav-buttons">
+            <a href="favorite.html" class="star-btn">★</a>
+            <a href="us.html"><button>Nosotros</button></a>
+            <a href="profile.html"><button>Perfil</button></a>
+            <a href="review.html"><button>Mis Reseñas</button></a>
+        </div>
+    </nav>
+
+    <main>
+        <h2>Tus Favoritos</h2>
+        <div id="favorites-container" class="cards-container"></div>
+        <p id="no-favorites" class="hidden">No tenés productos favoritos todavía.</p>
+    </main>
+
+    <script>
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const container = document.getElementById('favorites-container');
+        const noFavorites = document.getElementById('no-favorites');
+
+        if (favorites.length === 0) {
+            noFavorites.classList.remove('hidden');
+        } else {
+            favorites.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${product.image || 'placeholder.jpg'}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <button class="remove-favorite" data-id="${product.id}">★ Quitar</button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        document.querySelectorAll('.remove-favorite').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = e.target.dataset.id;
+                const newFavorites = favorites.filter(p => p.id !== id);
+                localStorage.setItem('favorites', JSON.stringify(newFavorites));
+                location.reload();
+            });
+        });
+    </script>
+    
+</body>
+</html>
