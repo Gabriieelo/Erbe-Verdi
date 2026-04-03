@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erbe Verdi Opinion</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1>Erbe Verdi Opinion</h1>
+        <div class="nav-buttons">
+            <a href="us.html"><button>Nosotros</button></a>
+            <a href="profile.html"><button>Perfil</button></a>
+            <a href="index.html"><button>Inicio</button></a>
+        </div>
+    </nav>
+
+    <main>
+        <form action="/submit-review" method="POST" class="review-form" enctype="multipart/form-data">
+            <h2>Deja la reseña de tu yerba favorita</h2>
+            
+            <div class="form-group">
+                <label for="nombre-yerba">Nombre yerba</label>
+                <input type="text" id="nombre-yerba" name="nombre_yerba" required>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="donde-conseguir">¿Dónde se puede conseguir el producto?</label>
+                <input type="text" id="donde-conseguir" name="donde_conseguir" required>
+            </div>
+
+            <div class="form-group">
+                <label for="foto-yerba">Foto de la yerba</label>
+                <input type="file" id="foto-yerba" name="foto_yerba" accept="image/*">
+            </div>
+
+            <button type="submit">Enviar Reseña</button>
+        </form>
+    </main>
+    
+</body>
+</html>
