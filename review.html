@@ -10,6 +10,9 @@
     <nav class="navbar">
         <h1>Erbe Verdi Opinion</h1>
         <div class="nav-buttons">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar yerba por nombre...">
+            </div>
             <a href="favorite.html" class="star-btn">★</a>
             <a href="us.html"><button>Nosotros</button></a>
             <a href="profile.html"><button>Perfil</button></a>
@@ -44,6 +47,13 @@
             <button type="submit">Enviar Reseña</button>
         </form>
     </main>
+    <script>
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', (e) => {
+            const filter = e.target.value.toLowerCase();
+            window.location.href = `index.html?search=${filter}`;
+        });
+    </script>
     
 </body>
 </html>

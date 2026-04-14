@@ -12,7 +12,7 @@ body {
 
 .navbar {
     background-color: #006400;
-    padding: 2rem 2rem;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,6 +28,7 @@ body {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .nav-buttons button {
@@ -255,4 +256,48 @@ main h2 {
     color: #004d00;
     font-size: 1.2rem;
     padding: 2rem;
+}
+
+.search-container {
+    display: flex;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+#search-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.75rem;
+    border: 2px solid #006400;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: #90EE90;
+}
+
+.search-container input {
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    height: 31px;
+}
+
+.card .add-favorite,
+.card .remove-favorite {
+    background-color: #FFD700;
+    color: #006400;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+}
+
+.card .add-favorite:hover,
+.card .remove-favorite:hover {
+    background-color: #FFA500;
 }

@@ -10,16 +10,24 @@
     <nav class="navbar">
         <h1>Erbe Verdi Opinion</h1>
         <div class="nav-buttons">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar yerba por nombre...">
+            </div>
             <a href="favorite.html" class="star-btn">★</a>
             <a href="index.html"><button>Inicio</button></a>
             <a href="profile.html"><button>Perfil</button></a>
-            <a href="review.html"><button>Mis Reseñas</button></a>
+            <a href="review.html"><button>Reseñas</button></a>
         </div>
     </nav>
     <div class="container">
-        <p>Te contamos quienes somos y nuestra pasión por las yerbas argentinas.
-
-        </p>
+        <p>Te contamos quienes somos y nuestra pasión por las yerbas argentinas.</p>
     </div>
+    <script>
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', (e) => {
+            const filter = e.target.value.toLowerCase();
+            window.location.href = `index.html?search=${filter}`;
+        });
+    </script>
 </body>
 </html>
