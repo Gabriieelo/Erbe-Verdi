@@ -10,10 +10,13 @@
     <nav class="navbar">
         <h1>Erbe Verdi Opinion</h1>
         <div class="nav-buttons">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar yerba por nombre...">
+            </div>
             <a href="favorite.html" class="star-btn">★</a>
             <a href="us.html"><button>Nosotros</button></a>
             <a href="profile.html"><button>Perfil</button></a>
-            <a href="review.html"><button>Mis Reseñas</button></a>
+            <a href="review.html"><button>Reseñas</button></a>
         </div>
     </nav>
 
@@ -24,34 +27,49 @@
     </main>
 
     <script>
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         const container = document.getElementById('favorites-container');
         const noFavorites = document.getElementById('no-favorites');
+        const searchInput = document.getElementById('search-input');
 
-        if (favorites.length === 0) {
-            noFavorites.classList.remove('hidden');
-        } else {
-            favorites.forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <img src="${product.image || 'placeholder.jpg'}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p>${product.description}</p>
-                    <button class="remove-favorite" data-id="${product.id}">★ Quitar</button>
-                `;
-                container.appendChild(card);
+        function renderFavorites(filter = '') {
+            container.innerHTML = '';
+            const filtered = favorites.filter(p => 
+                p.name.toLowerCase().includes(filter.toLowerCase())
+            );
+
+            if (filtered.length === 0) {
+                noFavorites.classList.remove('hidden');
+            } else {
+                noFavorites.classList.add('hidden');
+                filtered.forEach(product => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <img src="${product.image || 'placeholder.jpg'}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <button class="remove-favorite" data-id="${product.id}">★ Quitar</button>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+
+            document.querySelectorAll('.remove-favorite').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = e.target.dataset.id;
+                    favorites = favorites.filter(p => p.id !== id);
+                    localStorage.setItem('favorites', JSON.stringify(favorites));
+                    renderFavorites(searchInput.value);
+                });
             });
         }
 
-        document.querySelectorAll('.remove-favorite').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const id = e.target.dataset.id;
-                const newFavorites = favorites.filter(p => p.id !== id);
-                localStorage.setItem('favorites', JSON.stringify(newFavorites));
-                location.reload();
-            });
+        searchInput.addEventListener('input', (e) => {
+            renderFavorites(e.target.value);
         });
+
+        renderFavorites();
     </script>
     
 </body>

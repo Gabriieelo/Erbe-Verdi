@@ -10,14 +10,72 @@
     <nav class="navbar">
         <h1>Erbe Verdi Opinion</h1>
         <div class="nav-buttons">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar yerba por nombre...">
+            </div>
             <a href="favorite.html" class="star-btn">★</a>
             <a href="us.html"><button>Nosotros</button></a>
             <a href="profile.html"><button>Perfil</button></a>
-            <a href="review.html"><button>Mis Reseñas</button></a>
+            <a href="review.html"><button>Reseñas</button></a>
         </div>
     </nav>
     <div class="container">
         <p>Una pagina bien Argentina donde opinamos de los sabores de las yerbas que se comercializan en Argentina</p>
+        <div id="products-container" class="cards-container"></div>
     </div>
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const container = document.getElementById('products-container');
+        let products = [];
+
+        fetch('products.json')
+            .then(res => res.json())
+            .then(data => {
+                products = data;
+                const urlParams = new URLSearchParams(window.location.search);
+                const search = urlParams.get('search');
+                if (search) {
+                    searchInput.value = search;
+                    const filtered = products.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
+                    renderProducts(filtered);
+                } else {
+                    renderProducts(products);
+                }
+            });
+
+        function renderProducts(list) {
+            container.innerHTML = '';
+            list.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${product.image || 'placeholder.jpg'}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <button class="add-favorite" data-id="${product.id}">★ Agregar a favoritos</button>
+                `;
+                container.appendChild(card);
+            });
+            
+            document.querySelectorAll('.add-favorite').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = e.target.dataset.id;
+                    const product = products.find(p => p.id === id);
+                    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                    if (!favorites.find(p => p.id === id)) {
+                        favorites.push(product);
+                        localStorage.setItem('favorites', JSON.stringify(favorites));
+                        e.target.textContent = '✓ Agregado';
+                    }
+                });
+            });
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            const filter = e.target.value.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(filter));
+            renderProducts(filtered);
+        });
+    </script>
 </body>
 </html>
