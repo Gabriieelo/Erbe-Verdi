@@ -11,7 +11,7 @@
         <h1>Erbe Verdi Opinion</h1>
         <div class="nav-buttons">
             <div class="search-container">
-                <input type="text" id="search-input" placeholder="Buscar yerba por nombre...">
+                <input type="text" id="search-input" placeholder="Buscar yerba por nombre o descripción...">
             </div>
             <a href="favorite.html" class="star-btn">★</a>
             <a href="index.html"><button>Inicio</button></a>
@@ -36,7 +36,8 @@
         function renderFavorites(filter = '') {
             container.innerHTML = '';
             const filtered = favorites.filter(p => 
-                p.name.toLowerCase().includes(filter.toLowerCase())
+                p.name.toLowerCase().includes(filter.toLowerCase()) ||
+                p.description.toLowerCase().includes(filter.toLowerCase())
             );
 
             if (filtered.length === 0) {
