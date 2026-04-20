@@ -218,6 +218,8 @@ main h2 {
     border-radius: 10px;
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
 }
 
 .card img {
@@ -347,15 +349,35 @@ main h2 {
     background-color: #FFA500;
 }
 
+.back-btn {
+    display: inline-block;
+    background-color: #FFA500;
+    color: #006400;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+.back-btn:hover {
+    background-color: #FF8C00;
+}
+
 .card-buttons {
     display: flex;
     gap: 0.5rem;
+    align-items: stretch;
+    margin-top: auto;
 }
 
 .card-buttons .view-btn,
 .card-buttons .add-favorite {
     flex: 1;
-    padding: 0.3rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
@@ -365,6 +387,7 @@ main h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 40px;
 }
 
 .card .view-btn {
