@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "name": "Mate Cocido",
+    "description": "Yerba mate tradicional argentina, perfecta para el mate cocido.",
+    "image": ""
+  },
+  {
+    "id": "2",
+    "name": "Playadito",
+    "description": "Yerba suave con mucho aroma, ideal para Principiantes.",
+    "image": ""
+  },
+  {
+    "id": "3",
+    "name": "La Merced",
+    "description": "Yerba de sabor intenso y cuerpo completo.",
+    "image": ""
+  },
+  {
+    "id": "4",
+    "name": "Amanda",
+    "description": "Yerba tradicional con mucho sabor, la favorita de muchos.",
+    "image": ""
+  },
+  {
+    "id": "5",
+    "name": "Pajarito",
+    "description": "Yerba equilibrada, buena para compartir mate.",
+    "image": ""
+  },
+  {
+    "id": "6",
+    "name": "Cruz de Malta",
+    "description": "Yerba con sabor equilibrado y aroma persistente.",
+    "image": ""
+  }
+]
