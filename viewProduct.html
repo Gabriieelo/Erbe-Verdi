@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erbe Verdi Opinion</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1>Erbe Verdi Opinion</h1>
+        <div class="nav-buttons">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar yerba por nombre o descripción...">
+            </div>
+            <a href="favorite.html" class="star-btn">★</a>
+            <a href="us.html"><button>Nosotros</button></a>
+            <a href="index.html"><button>Inicio</button></a>
+            <a href="review.html"><button>Reseñas</button></a>
+        </div>
+    </nav>
+    <div class="container">
+        <p>Una pagina bien Argentina donde opinamos de los sabores de las yerbas que se comercializan en Argentina</p>
+        <div id="product-detail" class="product-detail-view"></div>
+    </div>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        if (productId) {
+            fetch('products.json')
+                .then(res => res.json())
+                .then(products => {
+                    const product = products.find(p => p.id === productId);
+                    const container = document.getElementById('product-detail');
+                    
+                    if (product) {
+                        container.innerHTML = `
+                            <div class="detail-card">
+                                <img src="${product.image || 'placeholder.jpg'}" alt="${product.name}">
+                                <h2>${product.name}</h2>
+                                <p class="product-description">${product.description}</p>
+                                <button class="add-favorite" data-id="${product.id}">★ Agregar a favoritos</button>
+                            </div>
+                        `;
+                        
+                        document.querySelector('.add-favorite').addEventListener('click', (e) => {
+                            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                            if (!favorites.find(p => p.id === product.id)) {
+                                favorites.push(product);
+                                localStorage.setItem('favorites', JSON.stringify(favorites));
+                                e.target.textContent = '✓ Agregado';
+                            }
+                        });
+                    } else {
+                        container.innerHTML = '<p>Producto no encontrado</p>';
+                    }
+                });
+        } else {
+            document.getElementById('product-detail').innerHTML = '<p>No se ha seleccionado ningún producto</p>';
+        }
+    </script>
+    
+</body>
+</html>
