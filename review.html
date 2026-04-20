@@ -26,7 +26,11 @@
             
             <div class="form-group">
                 <label for="nombre-yerba">Nombre yerba</label>
-                <input type="text" id="nombre-yerba" name="nombre_yerba" required>
+                <div class="autocomplete-wrapper">
+                    <input type="text" id="nombre-yerba" name="nombre_yerba" required autocomplete="off">
+                    <span class="dropdown-arrow" id="dropdown-btn">▼</span>
+                    <ul class="dropdown-options" id="dropdown-options"></ul>
+                </div>
             </div>
 
             <div class="form-group">
@@ -35,8 +39,15 @@
             </div>
 
             <div class="form-group">
-                <label for="donde-conseguir">¿Dónde se puede conseguir el producto?</label>
-                <input type="text" id="donde-conseguir" name="donde_conseguir" required>
+                <label for="valoracion">¿Qué valoración le das al producto?</label>
+                <div class="star-rating" id="star-rating">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                    <input type="hidden" id="valoracion" name="valoracion" required>
+                </div>
             </div>
 
             <div class="form-group">
@@ -48,12 +59,152 @@
         </form>
     </main>
     <script>
+        let yerbas = [];
+
+        fetch('products.json')
+            .then(res => res.json())
+            .then(data => {
+                yerbas = data;
+            });
+
         const searchInput = document.getElementById('search-input');
         searchInput.addEventListener('input', (e) => {
             const filter = e.target.value.toLowerCase();
             window.location.href = `index.html?search=${filter}`;
         });
+
+        const nombreYerbaInput = document.getElementById('nombre-yerba');
+        const dropdownBtn = document.getElementById('dropdown-btn');
+        const dropdownOptions = document.getElementById('dropdown-options');
+
+        dropdownBtn.addEventListener('click', () => {
+            showOptions(nombreYerbaInput.value);
+        });
+
+        nombreYerbaInput.addEventListener('input', (e) => {
+            showOptions(e.target.value);
+        });
+
+        function showOptions(filter) {
+            dropdownOptions.innerHTML = '';
+            const filtered = yerbas.filter(y => y.name.toLowerCase().includes(filter.toLowerCase()));
+            
+            if (filtered.length === 0) {
+                dropdownOptions.style.display = 'none';
+                return;
+            }
+
+            filtered.forEach(y => {
+                const li = document.createElement('li');
+                li.textContent = y.name;
+                li.addEventListener('click', () => {
+                    nombreYerbaInput.value = y.name;
+                    dropdownOptions.style.display = 'none';
+                });
+                dropdownOptions.appendChild(li);
+            });
+
+            dropdownOptions.style.display = 'block';
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.autocomplete-wrapper')) {
+                dropdownOptions.style.display = 'none';
+            }
+        });
+
+        const stars = document.querySelectorAll('.star');
+        const valoracionInput = document.getElementById('valoracion');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const value = star.getAttribute('data-value');
+                valoracionInput.value = value;
+                updateStars(value);
+            });
+
+            star.addEventListener('mouseover', () => {
+                const value = star.getAttribute('data-value');
+                updateStars(value, true);
+            });
+        });
+
+        document.getElementById('star-rating').addEventListener('mouseleave', () => {
+            updateStars(valoracionInput.value || 0);
+        });
+
+        function updateStars(value, hover = false) {
+            stars.forEach(s => {
+                const sValue = parseInt(s.getAttribute('data-value'));
+                if (sValue <= value) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        }
     </script>
+    <style>
+        .autocomplete-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .autocomplete-wrapper input {
+            width: 100%;
+            padding-right: 30px;
+        }
+        .dropdown-arrow {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 12px;
+            color: #666;
+            user-select: none;
+        }
+        .dropdown-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ccc;
+            border-top: none;
+            max-height: 200px;
+            overflow-y: auto;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: none;
+            z-index: 1000;
+        }
+        .dropdown-options li {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .dropdown-options li:hover {
+            background: #f0f0f0;
+        }
+        .star-rating {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .star {
+            font-size: 30px;
+            color: #ccc;
+            transition: color 0.2s;
+        }
+        .star.active {
+            color: #ffd700;
+        }
+        .star:hover {
+            color: #ffc107;
+        }
+    </style>
     
 </body>
 </html>
