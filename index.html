@@ -11,7 +11,7 @@
         <h1>Erbe Verdi Opinion</h1>
         <div class="nav-buttons">
             <div class="search-container">
-                <input type="text" id="search-input" placeholder="Buscar yerba por nombre...">
+                <input type="text" id="search-input" placeholder="Buscar yerba por nombre o descripción...">
             </div>
             <a href="favorite.html" class="star-btn">★</a>
             <a href="us.html"><button>Nosotros</button></a>
@@ -36,7 +36,10 @@
                 const search = urlParams.get('search');
                 if (search) {
                     searchInput.value = search;
-                    const filtered = products.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
+                    const filtered = products.filter(p => 
+                        p.name.toLowerCase().includes(search.toLowerCase()) || 
+                        p.description.toLowerCase().includes(search.toLowerCase())
+                    );
                     renderProducts(filtered);
                 } else {
                     renderProducts(products);
@@ -73,7 +76,10 @@
 
         searchInput.addEventListener('input', (e) => {
             const filter = e.target.value.toLowerCase();
-            const filtered = products.filter(p => p.name.toLowerCase().includes(filter));
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(filter) || 
+                p.description.toLowerCase().includes(filter)
+            );
             renderProducts(filtered);
         });
     </script>
