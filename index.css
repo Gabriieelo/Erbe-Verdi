@@ -24,6 +24,18 @@ body {
     font-size: 2.5rem;
 }
 
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.brand-icon {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+}
+
 .nav-buttons {
     display: flex;
     gap: 1rem;
@@ -88,6 +100,11 @@ body {
         font-size: 2rem;
     }
 
+    .brand-icon {
+        width: 30px;
+        height: 30px;
+    }
+
     .nav-buttons {
         justify-content: center;
     }
@@ -109,6 +126,11 @@ body {
 @media (max-width: 480px) {
     .navbar h1 {
         font-size: 1.5rem;
+    }
+
+    .brand-icon {
+        width: 26px;
+        height: 26px;
     }
 
 .nav-buttons button {
