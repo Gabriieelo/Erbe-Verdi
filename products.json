@@ -3,174 +3,174 @@
     "id": "1",
     "name": "Mate Cocido",
     "description": "Yerba mate tradicional argentina, perfecta para el mate cocido.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "2",
     "name": "Playadito",
     "description": "Yerba suave con mucho aroma, ideal para principiantes.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "3",
     "name": "La Merced",
     "description": "Yerba de sabor intenso y cuerpo completo.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "4",
     "name": "Amanda",
     "description": "Yerba tradicional con mucho sabor, la favorita de muchos.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "5",
     "name": "Pajarito",
     "description": "Yerba equilibrada, buena para compartir mate.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "6",
     "name": "Cruz de Malta",
     "description": "Yerba con sabor equilibrado y aroma persistente.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "7",
     "name": "Canarias Tradicional",
     "description": "Yerba uruguaya intensa, de molienda fina y sabor fuerte.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "8",
     "name": "Canarias Té Verde y Jengibre",
     "description": "Mezcla fresca con té verde y jengibre, ideal para un mate diferente.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "9",
     "name": "Canarias Especial",
     "description": "Versión premium con sabor intenso y mayor duración.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "10",
     "name": "Canarias Té Rojo y Centella",
     "description": "Combinación herbal con notas suaves y propiedades digestivas.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "11",
     "name": "Baldo",
     "description": "Yerba estilo uruguayo, fuerte y rendidora.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "12",
     "name": "Sara",
     "description": "Yerba suave pero duradera, muy popular en Uruguay.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "13",
     "name": "Cósmico",
     "description": "Yerba moderna con perfil suave y equilibrado.",
-    "image": ""
+    "image": "images/canarias_tradicional.png "
   },
   {
     "id": "14",
     "name": "Rei Verde Tradicional",
     "description": "Yerba brasileña clásica, sabor natural y suave.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "15",
     "name": "Rei Verde Clásica",
     "description": "Variante equilibrada, ideal para consumo diario.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "16",
     "name": "Rei Verde Premium",
     "description": "Selección especial con mayor intensidad y aroma.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "17",
     "name": "Rei Verde Compuesta",
     "description": "Mezcla con hierbas que aportan frescura y suavidad.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "18",
     "name": "Rei Verde Orgánica",
     "description": "Yerba certificada orgánica, sabor puro y natural.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "19",
     "name": "Matesur",
     "description": "Yerba argentina de perfil suave y buen rendimiento.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "20",
     "name": "Matesur Tradicional",
     "description": "Versión clásica, equilibrada y fácil de tomar.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "21",
     "name": "Taragüi",
     "description": "Yerba fuerte y clásica, una de las más populares en Argentina.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "22",
     "name": "CBSe",
     "description": "Yerba compuesta con hierbas, conocida por sus sabores saborizados.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "23",
     "name": "Nobleza Gaucha",
     "description": "Yerba tradicional con sabor equilibrado y buena duración.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "24",
     "name": "Unión",
     "description": "Yerba suave y rendidora, ideal para mates largos.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "25",
     "name": "Verdeflor Hierbas Naturales",
     "description": "Yerba compuesta con hierbas naturales y perfil suave.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "26",
     "name": "Rosamonte",
     "description": "Yerba intensa y con carácter, de sabor fuerte.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "27",
     "name": "Mañanita",
     "description": "Yerba suave y accesible, ideal para consumo diario.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "28",
     "name": "La Tranquera",
     "description": "Yerba clásica argentina con sabor equilibrado.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "29",
     "name": "Mate Rojo",
     "description": "Yerba con personalidad intensa y sabor profundo.",
-    "image": ""
+    "image": "images/canarias_tradicional.png"
   }
 ]
