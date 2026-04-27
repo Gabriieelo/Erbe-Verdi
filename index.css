@@ -5,11 +5,7 @@
 }
 
 body {
-    background-image: url('images/mateIs.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-color: wheat;
     min-height: 100vh;
     font-family: Arial, sans-serif;
 }
