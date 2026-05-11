@@ -116,7 +116,7 @@ body {
 .about-container strong {
     color: #006400;
 }
-
+/* responsive */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -150,7 +150,7 @@ body {
         font-size: 1rem;
     }
 }
-
+/* responsive */
 @media (max-width: 480px) {
     .navbar h1 {
         font-size: 1.5rem;

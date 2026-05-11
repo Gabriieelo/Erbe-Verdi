@@ -84,8 +84,8 @@
                 });
             });
         }
-
-        searchInput.addEventListener('input', (e) => {
+        /* buscador */
+        searchInput.addEventListener('input', (e) => { 
             const filter = e.target.value.toLowerCase();
             const filtered = products.filter(p => 
                 p.name.toLowerCase().includes(filter) || 
