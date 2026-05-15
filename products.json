@@ -1,176 +1,164 @@
 [
   {
     "id": "1",
-    "name": "Mate Cocido",
-    "description": "Yerba mate tradicional argentina, perfecta para el mate cocido.",
+    "name": "Playadito",
+    "description": "Playadito ofrece un sabor suave, equilibrado y rendidor, ideal para quienes toman mate durante todo el día. Su bajo nivel de polvo y estacionamiento natural generan una infusión ligera, aromática y fácil de disfrutar, con notas dulces y amargor moderado.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "2",
-    "name": "Playadito",
-    "description": "Yerba suave con mucho aroma, ideal para principiantes.",
+    "name": "La Merced",
+    "description": "La Merced es una yerba premium reconocida por su sabor refinado, intenso y aromático. Su cuidadosa selección de hojas y estacionamiento prolongado brindan mates equilibrados, persistentes y elegantes, ideales para quienes buscan una experiencia tradicional con mayor personalidad y carácter.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "3",
-    "name": "La Merced",
-    "description": "Yerba de sabor intenso y cuerpo completo.",
+    "name": "Amanda",
+    "description": "Amanda combina suavidad, buen cuerpo y un sabor clásico muy equilibrado. Su molienda tradicional permite una cebada rendidora, con amargor moderado y aroma agradable, siendo una de las opciones preferidas para disfrutar mates diarios, consistentes y fáciles de tomar.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "4",
-    "name": "Amanda",
-    "description": "Yerba tradicional con mucho sabor, la favorita de muchos.",
+    "name": "Cruz de Malta",
+    "description": "Cruz de Malta ofrece un perfil tradicional con sabor intenso, levemente ahumado y persistente. Su mezcla equilibrada de hojas y palo brinda mates con buen cuerpo, espuma duradera y carácter clásico, ideal para quienes disfrutan una experiencia fuerte y auténtica.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "5",
-    "name": "Pajarito",
-    "description": "Yerba equilibrada, buena para compartir mate.",
+    "name": "Canarias Tradicional",
+    "description": "Yerba Canarias Tradicional ofrece un sabor intenso, equilibrado y duradero, ideal para amantes del mate tradicional. Su molienda fina genera buena espuma, gran rendimiento y una experiencia fuerte, aromática y consistente en cada cebada, perfecta para disfrutar a cualquier hora del día.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "6",
-    "name": "Cruz de Malta",
-    "description": "Yerba con sabor equilibrado y aroma persistente.",
+    "name": "Canarias Té Verde y Jengibre",
+    "description": "Canarias Té Verde y Jengibre combina la intensidad característica de Canarias con notas frescas de té verde y el toque especiado del jengibre. Su sabor equilibrado y aromático brinda mates energizantes, refrescantes y diferentes, ideales para quienes buscan nuevas experiencias al matear.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "7",
-    "name": "Canarias Tradicional",
-    "description": "Yerba uruguaya intensa, de molienda fina y sabor fuerte.",
+    "name": "Canarias Especial",
+    "description": "Canarias Especial se destaca por su sabor intenso, cuerpo firme y gran duración. Elaborada con selección especial de hojas, ofrece mates potentes, espumosos y persistentes, ideales para consumidores experimentados que prefieren perfiles tradicionales con personalidad fuerte y equilibrada.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "8",
-    "name": "Canarias Té Verde y Jengibre",
-    "description": "Mezcla fresca con té verde y jengibre, ideal para un mate diferente.",
+    "name": "Canarias Té Rojo y Centella",
+    "description": "Canarias Té Rojo y Centella mezcla yerba mate con té rojo y centella asiática, logrando una infusión aromática, herbal y diferente. Su perfil suave pero persistente brinda mates frescos y equilibrados, ideales para quienes buscan una alternativa funcional y con sabor distintivo.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "9",
-    "name": "Canarias Especial",
-    "description": "Versión premium con sabor intenso y mayor duración.",
+    "name": "Baldo",
+    "description": "Baldo ofrece un sabor intenso, seco y duradero, muy valorado por amantes del mate uruguayo tradicional. Su molienda fina genera excelente espuma y una experiencia potente, equilibrada y rendidora, ideal para quienes disfrutan mates fuertes y con carácter marcado.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "10",
-    "name": "Canarias Té Rojo y Centella",
-    "description": "Combinación herbal con notas suaves y propiedades digestivas.",
+    "name": "Sara",
+    "description": "Sara es una yerba reconocida por su sabor equilibrado, suave y persistente. Su molienda fina y bajo contenido de palo generan mates espumosos, aromáticos y rendidores, ideales para quienes buscan una experiencia tradicional uruguaya con intensidad moderada y gran duración.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "11",
-    "name": "Baldo",
-    "description": "Yerba estilo uruguayo, fuerte y rendidora.",
-    "image": "images/canarias_tradicional.png"
+    "name": "Cósmico",
+    "description": "Cósmico presenta un perfil moderno con sabor intenso, herbal y equilibrado. Su composición cuidadosamente seleccionada brinda mates duraderos, aromáticos y con buena presencia en boca, ideal para quienes buscan una experiencia diferente sin perder la esencia tradicional del mate.",
+    "image": "images/canarias_tradicional.png "
   },
   {
     "id": "12",
-    "name": "Sara",
-    "description": "Yerba suave pero duradera, muy popular en Uruguay.",
+    "name": "Rei Verde Tradicional",
+    "description": "Rei Verde Tradicional ofrece un sabor fresco, vegetal y auténtico, característico de las yerbas brasileñas. Su molienda fina permite mates suaves, espumosos y duraderos, ideales para quienes disfrutan perfiles intensos pero equilibrados, con aroma natural y gran frescura en cada cebada.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "13",
-    "name": "Cósmico",
-    "description": "Yerba moderna con perfil suave y equilibrado.",
-    "image": "images/canarias_tradicional.png "
+    "name": "Rei Verde Clásica",
+    "description": "Rei Verde Clásica combina frescura, suavidad y un perfil herbal muy agradable. Elaborada con hojas seleccionadas, brinda mates espumosos, equilibrados y de larga duración, siendo una excelente opción para quienes buscan una experiencia tradicional brasileña con sabor limpio y persistente.",
+    "image": "images/canarias_tradicional.png"
   },
   {
     "id": "14",
-    "name": "Rei Verde Tradicional",
-    "description": "Yerba brasileña clásica, sabor natural y suave.",
+    "name": "Rei Verde Premium",
+    "description": "Rei Verde Premium se destaca por su selección superior de hojas y sabor intenso, fresco y duradero. Su molienda fina genera excelente espuma y mates equilibrados, ideales para consumidores exigentes que buscan calidad premium y una experiencia auténticamente brasileña.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "15",
-    "name": "Rei Verde Clásica",
-    "description": "Variante equilibrada, ideal para consumo diario.",
+    "name": "Rei Verde Compuesta",
+    "description": "Rei Verde Compuesta combina yerba mate brasileña con hierbas naturales cuidadosamente seleccionadas, logrando una infusión fresca, aromática y equilibrada. Su sabor herbal y suave brinda mates refrescantes, duraderos y agradables, ideales para quienes buscan una experiencia diferente y liviana.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "16",
-    "name": "Rei Verde Premium",
-    "description": "Selección especial con mayor intensidad y aroma.",
+    "name": "Rei Verde Orgánica",
+    "description": "Rei Verde Orgánica se elabora con cultivo orgánico certificado, ofreciendo un sabor fresco, natural y equilibrado. Su molienda fina genera mates suaves, espumosos y persistentes, ideales para quienes valoran productos naturales, libres de agroquímicos y con excelente calidad premium.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "17",
-    "name": "Rei Verde Compuesta",
-    "description": "Mezcla con hierbas que aportan frescura y suavidad.",
+    "name": "Matesur",
+    "description": "MateSur ofrece un sabor equilibrado y moderno, con notas suaves y buena duración. Su composición brinda mates aromáticos, rendidores y agradables de tomar, ideal para quienes buscan una yerba versátil, tradicional y fácil de disfrutar en cualquier momento del día.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "18",
-    "name": "Rei Verde Orgánica",
-    "description": "Yerba certificada orgánica, sabor puro y natural.",
+    "name": "Matesur Tradicional",
+    "description": "MateSur Argentina combina un perfil suave con buen cuerpo y amargor moderado. Elaborada con selección de hojas tradicionales, brinda mates equilibrados, persistentes y fáciles de cebar, ideal para quienes prefieren una experiencia clásica con excelente rendimiento diario.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "19",
-    "name": "Matesur",
-    "description": "Yerba argentina de perfil suave y buen rendimiento.",
+    "name": "Taragüi",
+    "description": "Taragüi es una de las yerbas más tradicionales y reconocidas, destacada por su sabor intenso, cuerpo firme y amargor equilibrado. Su molienda clásica permite mates rendidores, aromáticos y persistentes, ideales para quienes disfrutan una experiencia fuerte y auténtica.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "20",
-    "name": "Matesur Tradicional",
-    "description": "Versión clásica, equilibrada y fácil de tomar.",
+    "name": "CBSe",
+    "description": "CBSe se caracteriza por sus mezclas saborizadas y perfil suave, ideal para quienes buscan mates diferentes y refrescantes. Sus variedades con hierbas y frutas ofrecen una experiencia liviana, aromática y fácil de tomar, perfecta para consumidores que prefieren sabores menos intensos.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "21",
-    "name": "Taragüi",
-    "description": "Yerba fuerte y clásica, una de las más populares en Argentina.",
+    "name": "Nobleza Gaucha",
+    "description": "Nobleza Gaucha ofrece un sabor tradicional, equilibrado y rendidor, con amargor moderado y aroma agradable. Su molienda clásica brinda mates consistentes y fáciles de disfrutar, ideal para quienes buscan una yerba confiable, suave y apta para consumo diario.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "22",
-    "name": "CBSe",
-    "description": "Yerba compuesta con hierbas, conocida por sus sabores saborizados.",
+    "name": "Unión",
+    "description": "Unión es una yerba suave y equilibrada, reconocida por su sabor liviano y fácil de tomar. Su perfil delicado permite mates rendidores y agradables, ideales para quienes prefieren una experiencia tradicional con menor intensidad y amargor moderado.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "23",
-    "name": "Nobleza Gaucha",
-    "description": "Yerba tradicional con sabor equilibrado y buena duración.",
+    "name": "Verdeflor Hierbas Naturales",
+    "description": "Verdeflor Hierbas Naturales combina yerba mate con hierbas naturales cuidadosamente seleccionadas, ofreciendo una infusión fresca, aromática y equilibrada. Su sabor suave y herbal brinda mates livianos y agradables, ideales para quienes buscan una experiencia diferente y refrescante.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "24",
-    "name": "Unión",
-    "description": "Yerba suave y rendidora, ideal para mates largos.",
+    "name": "Rosamonte",
+    "description": "Rosamonte se destaca por su sabor fuerte, intenso y levemente ahumado, muy apreciado por consumidores tradicionales. Su excelente duración y cuerpo firme brindan mates persistentes, rendidores y con personalidad marcada, ideales para quienes prefieren perfiles robustos y clásicos.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "25",
-    "name": "Verdeflor Hierbas Naturales",
-    "description": "Yerba compuesta con hierbas naturales y perfil suave.",
+    "name": "Mañanita",
+    "description": "Mañanita ofrece un sabor clásico, suave y equilibrado, ideal para el consumo diario. Su molienda tradicional permite mates rendidores y agradables, con amargor moderado y aroma natural, siendo una excelente opción para quienes disfrutan perfiles tradicionales y fáciles de tomar.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "26",
-    "name": "Rosamonte",
-    "description": "Yerba intensa y con carácter, de sabor fuerte.",
+    "name": "La Tranquera",
+    "description": "La Tranquera brinda un sabor suave, equilibrado y tradicional, con buena duración y amargor moderado. Su perfil clásico permite mates agradables y fáciles de disfrutar, ideal para quienes buscan una experiencia simple, rendidora y apta para cualquier momento del día.",
     "image": "images/canarias_tradicional.png"
   },
   {
     "id": "27",
-    "name": "Mañanita",
-    "description": "Yerba suave y accesible, ideal para consumo diario.",
-    "image": "images/canarias_tradicional.png"
-  },
-  {
-    "id": "28",
-    "name": "La Tranquera",
-    "description": "Yerba clásica argentina con sabor equilibrado.",
-    "image": "images/canarias_tradicional.png"
-  },
-  {
-    "id": "29",
     "name": "Mate Rojo",
-    "description": "Yerba con personalidad intensa y sabor profundo.",
+    "description": "Mate Rojo combina intensidad, aroma herbal y un perfil moderno muy distintivo. Su sabor equilibrado y persistente brinda mates con buena personalidad, ideales para quienes buscan una experiencia diferente, rendidora y con un toque innovador dentro del mundo tradicional del mate.",
     "image": "images/canarias_tradicional.png"
   }
 ]
