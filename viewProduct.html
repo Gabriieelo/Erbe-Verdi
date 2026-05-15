@@ -32,6 +32,20 @@
         const urlParams = new URLSearchParams(window.location.search);
         const productId = urlParams.get('id');
 
+        function generateStars(rating) {
+            if (!rating) return '';
+            const fullStars = Math.floor(rating);
+            const emptyStars = 5 - fullStars;
+            let stars = '';
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<span class="star filled">★</span>';
+            }
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<span class="star">★</span>';
+            }
+            return stars;
+        }
+
         if (productId) {
             fetch('products.json')
                 .then(res => res.json())
@@ -45,6 +59,12 @@
                                 <img src="${product.image || 'placeholder.jpg'}" alt="${product.name}">
                                 <h2>${product.name}</h2>
                                 <p class="product-description">${product.description}</p>
+                                <p class="product-valoracion">Valoración: 
+                                <span class="stars-container">
+                                    ${generateStars(product.valoracion)}
+                                </span>
+                                <span>${product.valoracion || 'N/A'}</span>
+                            </p>
                                 <button class="add-favorite" data-id="${product.id}">★ Agregar a favoritos</button>
                             </div>
                         `;

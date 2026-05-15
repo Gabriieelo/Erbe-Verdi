@@ -3,43 +3,50 @@
     "id": "1",
     "name": "Playadito",
     "description": "Playadito ofrece un sabor suave, equilibrado y rendidor, ideal para quienes toman mate durante todo el día. Su bajo nivel de polvo y estacionamiento natural generan una infusión ligera, aromática y fácil de disfrutar, con notas dulces y amargor moderado.",
-    "image": "images/canarias_tradicional.png"
+    "image": "images/canarias_tradicional.png",
+    "valoracion": 4.2
   },
   {
     "id": "2",
     "name": "La Merced",
     "description": "La Merced es una yerba premium reconocida por su sabor refinado, intenso y aromático. Su cuidadosa selección de hojas y estacionamiento prolongado brindan mates equilibrados, persistentes y elegantes, ideales para quienes buscan una experiencia tradicional con mayor personalidad y carácter.",
-    "image": "images/canarias_tradicional.png"
+    "image": "images/canarias_tradicional.png",
+    "valoracion": 3.5
   },
   {
     "id": "3",
     "name": "Amanda",
     "description": "Amanda combina suavidad, buen cuerpo y un sabor clásico muy equilibrado. Su molienda tradicional permite una cebada rendidora, con amargor moderado y aroma agradable, siendo una de las opciones preferidas para disfrutar mates diarios, consistentes y fáciles de tomar.",
-    "image": "images/canarias_tradicional.png"
+    "image": "images/canarias_tradicional.png",
+    "valoracion": 4.8
   },
   {
     "id": "4",
     "name": "Cruz de Malta",
     "description": "Cruz de Malta ofrece un perfil tradicional con sabor intenso, levemente ahumado y persistente. Su mezcla equilibrada de hojas y palo brinda mates con buen cuerpo, espuma duradera y carácter clásico, ideal para quienes disfrutan una experiencia fuerte y auténtica.",
-    "image": "images/canarias_tradicional.png"
+    "image": "images/canarias_tradicional.png",
+    "valoracion": 2.9
   },
   {
     "id": "5",
     "name": "Canarias Tradicional",
     "description": "Yerba Canarias Tradicional ofrece un sabor intenso, equilibrado y duradero, ideal para amantes del mate tradicional. Su molienda fina genera buena espuma, gran rendimiento y una experiencia fuerte, aromática y consistente en cada cebada, perfecta para disfrutar a cualquier hora del día.",
-    "image": "images/canarias_tradicional.png"
+    "image": "images/canarias_tradicional.png",
+    "valoracion": 4.1
   },
   {
     "id": "6",
     "name": "Canarias Té Verde y Jengibre",
     "description": "Canarias Té Verde y Jengibre combina la intensidad característica de Canarias con notas frescas de té verde y el toque especiado del jengibre. Su sabor equilibrado y aromático brinda mates energizantes, refrescantes y diferentes, ideales para quienes buscan nuevas experiencias al matear.",
-    "image": "images/canarias_tradicional.png"
+    "image": "images/canarias_tradicional.png",
+    "valoracion": 3.7
   },
   {
     "id": "7",
     "name": "Canarias Especial",
     "description": "Canarias Especial se destaca por su sabor intenso, cuerpo firme y gran duración. Elaborada con selección especial de hojas, ofrece mates potentes, espumosos y persistentes, ideales para consumidores experimentados que prefieren perfiles tradicionales con personalidad fuerte y equilibrada.",
-    "image": "images/canarias_tradicional.png"
+    "image": "images/canarias_tradicional.png",
+    "valoracion": 4.5
   },
   {
     "id": "8",
