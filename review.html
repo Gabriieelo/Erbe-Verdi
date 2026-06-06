@@ -66,12 +66,6 @@
                 yerbas = data;
             });
 
-        const searchInput = document.getElementById('search-input');
-        searchInput.addEventListener('input', (e) => {
-            const filter = e.target.value.toLowerCase();
-            window.location.href = `index.html?search=${filter}`;
-        });
-
         const nombreYerbaInput = document.getElementById('nombre-yerba');
         const dropdownBtn = document.getElementById('dropdown-btn');
         const dropdownOptions = document.getElementById('dropdown-options');
