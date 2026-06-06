@@ -21,6 +21,7 @@
             <a href="us.html"><button>Nosotros</button></a>
             <a href="profile.html"><button>Perfil</button></a>
             <a href="review.html"><button>Reseñas</button></a>
+            <a href="newProduct.html"><button>Admin</button></a>
             <a href="user.html"><button>Iniciar Sesión</button></a>
         </div>
     </nav>
@@ -36,7 +37,8 @@
         fetch('products.json')
             .then(res => res.json())
             .then(data => {
-                products = data;
+                const adminProducts = JSON.parse(localStorage.getItem('admin_products')) || [];
+                products = [...data, ...adminProducts];
                 const urlParams = new URLSearchParams(window.location.search);
                 const search = urlParams.get('search');
                 if (search) {
