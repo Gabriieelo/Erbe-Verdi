@@ -29,23 +29,24 @@
         <p>Una pagina bien Argentina donde opinamos de los sabores de las yerbas que se comercializan en Argentina</p>
         <div id="products-container" class="cards-container"></div>
     </div>
+    <script src="script.js"></script>
     <script>
         const searchInput = document.getElementById('search-input');
         const container = document.getElementById('products-container');
         let products = [];
 
-        fetch('products.json')
-            .then(res => res.json())
+        // Cargar productos desde Supabase (usa getProducts() definido en script.js)
+        getProducts()
             .then(data => {
                 const adminProducts = JSON.parse(localStorage.getItem('admin_products')) || [];
-                products = [...data, ...adminProducts];
+                products = [...(data || []), ...adminProducts];
                 const urlParams = new URLSearchParams(window.location.search);
                 const search = urlParams.get('search');
                 if (search) {
                     searchInput.value = search;
                     const filtered = products.filter(p => 
-                        p.name.toLowerCase().includes(search.toLowerCase()) || 
-                        p.description.toLowerCase().includes(search.toLowerCase())
+                        (p.name || '').toLowerCase().includes(search.toLowerCase()) || 
+                        (p.description || '').toLowerCase().includes(search.toLowerCase())
                     );
                     renderProducts(filtered);
                 } else {
@@ -53,8 +54,8 @@
                 }
             })
             .catch(error => {
-                console.error('Error al cargar productos:', error);
-                container.innerHTML = '<p>No se pudieron cargar los productos. Revisa products.json.</p>';
+                console.error('Error al cargar productos desde Supabase:', error);
+                container.innerHTML = '<p>No se pudieron cargar los productos desde Supabase.</p>';
             });
 
         function renderProducts(list) {
@@ -77,9 +78,9 @@
             document.querySelectorAll('.add-favorite').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const id = e.target.dataset.id;
-                    const product = products.find(p => p.id === id);
+                    const product = products.find(p => String(p.id) === id);
                     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-                    if (!favorites.find(p => p.id === id)) {
+                    if (product && !favorites.find(p => String(p.id) === id)) {
                         favorites.push(product);
                         localStorage.setItem('favorites', JSON.stringify(favorites));
                         e.target.textContent = '✓ Agregado';

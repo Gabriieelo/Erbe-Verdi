@@ -33,7 +33,7 @@
 
             <div class="form-group">
                 <label for="product-name">Nombre del producto</label>
-                <input type="text" id="product-name" placeholder="Ej: Playadito" required>
+                <input type="text" id="product-name" placeholder="Nombre del producto" required>
             </div>
 
             <div class="form-group">
@@ -55,12 +55,14 @@
             <div id="success-msg" class="success-msg">Producto agregado correctamente</div>
         </form>
 
+        <!--
         <div class="products-list" id="admin-products-section">
             <h3>Productos Agregados</h3>
             <div id="admin-products-container">
                 <p style="color: #004d00; text-align: center;">No hay productos agregados por el administrador.</p>
             </div>
         </div>
+        -->
     </div>
 
     <script src="script.js"></script>
@@ -87,13 +89,14 @@
                 });
         }
 
+        /*
         async function loadAdminProducts() {
             const container = document.getElementById('admin-products-container');
 
             try {
                 const supabaseProducts = await getProducts();
                 if (supabaseProducts.length === 0) {
-                    container.innerHTML = '<p style="color: #004d00; text-align: center;">No hay productos agregados por el administrador.</p>';
+                    container.innerHTML = '<p style="color: #004d00; text-align: center;'>No hay productos agregados por el administrador.</p>';
                     return;
                 }
                 let table = '<table><thead><tr><th>ID</th><th>Nombre</th><th></th></tr></thead><tbody>';
@@ -109,7 +112,7 @@
             } catch {
                 const adminProducts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
                 if (adminProducts.length === 0) {
-                    container.innerHTML = '<p style="color: #004d00; text-align: center;">No hay productos agregados por el administrador.</p>';
+                    container.innerHTML = '<p style="color: #004d00; text-align: center;'>No hay productos agregados por el administrador.</p>';
                     return;
                 }
                 let table = '<table><thead><tr><th>ID</th><th>Nombre</th><th></th></tr></thead><tbody>';
@@ -124,6 +127,7 @@
                 container.innerHTML = table;
             }
         }
+        */
 
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('product-form');
@@ -184,10 +188,10 @@
                 });
                 valoracionInput.value = '';
 
-                loadAdminProducts();
+                // loadAdminProducts(); // comentado temporalmente
             });
 
-            loadAdminProducts();
+            // loadAdminProducts(); // comentado temporalmente
         });
     </script>
 </body>
