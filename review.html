@@ -57,13 +57,23 @@
             <button type="submit">Enviar Reseña</button>
         </form>
     </main>
+    <script src="script.js"></script>
     <script>
         let yerbas = [];
 
-        fetch('products.json')
-            .then(res => res.json())
+        // Cargar productos desde Supabase (getProducts() en script.js)
+        getProducts()
             .then(data => {
-                yerbas = data;
+                const adminProducts = JSON.parse(localStorage.getItem('admin_products')) || [];
+                yerbas = [...(data || []), ...adminProducts];
+            })
+            .catch(err => {
+                console.error('Error al cargar yerbas desde Supabase:', err);
+                // Fallback: intentar cargar products.json local
+                fetch('products.json')
+                    .then(res => res.json())
+                    .then(data => { yerbas = data; })
+                    .catch(e => console.error('No se pudo cargar products.json:', e));
             });
 
         const nombreYerbaInput = document.getElementById('nombre-yerba');
@@ -80,8 +90,9 @@
 
         function showOptions(filter) {
             dropdownOptions.innerHTML = '';
-            const filtered = yerbas.filter(y => y.name.toLowerCase().includes(filter.toLowerCase()));
-            
+            const q = (filter || '').toLowerCase();
+            const filtered = yerbas.filter(y => (y.name || '').toLowerCase().includes(q));
+
             if (filtered.length === 0) {
                 dropdownOptions.style.display = 'none';
                 return;
