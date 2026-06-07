@@ -31,3 +31,26 @@ async function insertProduct(product) {
 async function getProducts() {
   return supabaseFetch('/rest/v1/products?select=*');
 }
+
+async function uploadImage(file) {
+  const ext = file.name.split('.').pop();
+  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const url = `${SUPABASE_URL}/storage/v1/object/product-images/${fileName}`;
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      'Content-Type': file.type,
+      'x-upsert': 'true',
+    },
+    body: file,
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Error al subir imagen: ${res.status} ${err}`);
+  }
+
+  return `${SUPABASE_URL}/storage/v1/object/public/product-images/${fileName}`;
+}

@@ -42,8 +42,8 @@
             </div>
 
             <div class="form-group">
-                <label for="product-image">URL de la imagen</label>
-                <input type="text" id="product-image" placeholder="images/mi_imagen.png" required>
+                <label for="product-image">Imagen del producto</label>
+                <input type="file" id="product-image" accept="image/*" required>
             </div>
 
             <div class="form-group hidden">
@@ -142,17 +142,26 @@
 
                 const name = document.getElementById('product-name').value.trim();
                 const description = document.getElementById('product-description').value.trim();
-                const image = document.getElementById('product-image').value.trim();
+                const imageFile = document.getElementById('product-image').files[0];
 
-                if (!name || !description || !image) {
+                if (!name || !description || !imageFile) {
                     alert('Completa todos los campos obligatorios.');
+                    return;
+                }
+
+                let imageUrl;
+                try {
+                    imageUrl = await uploadImage(imageFile);
+                } catch (err) {
+                    console.error('Error al subir la imagen:', err);
+                    alert('Error al subir la imagen. Intenta de nuevo.');
                     return;
                 }
 
                 const newProduct = {
                     name: name,
                     description: description,
-                    image: image,
+                    image: imageUrl,
                 };
 
                 try {
@@ -161,7 +170,7 @@
                 } catch (err) {
                     console.warn('Error al enviar a Supabase, guardando solo local:', err);
                     const adminProducts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-                    adminProducts.push({ ...newProduct, id: idInput.value, valoracion: null });
+                    adminProducts.push({ ...newProduct, id: idInput.value, valoracion: null, image: imageUrl });
                     localStorage.setItem(STORAGE_KEY, JSON.stringify(adminProducts));
                     successMsg.textContent = 'Producto guardado localmente (Supabase no disponible)';
                 }
