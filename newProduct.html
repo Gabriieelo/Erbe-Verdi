@@ -63,6 +63,7 @@
         </div>
     </div>
 
+    <script src="script.js"></script>
     <script>
         const STORAGE_KEY = 'admin_products';
 
@@ -86,35 +87,42 @@
                 });
         }
 
-        function loadAdminProducts() {
+        async function loadAdminProducts() {
             const container = document.getElementById('admin-products-container');
-            const adminProducts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
-            if (adminProducts.length === 0) {
-                container.innerHTML = '<p style="color: #004d00; text-align: center;">No hay productos agregados por el administrador.</p>';
-                return;
-            }
-
-            let table = '<table><thead><tr><th>ID</th><th>Nombre</th><th></th></tr></thead><tbody>';
-            adminProducts.forEach(p => {
-                table += `<tr>
-                    <td>${p.id}</td>
-                    <td>${p.name}</td>
-                    <td><button class="delete-btn" data-id="${p.id}">Eliminar</button></td>
-                </tr>`;
-            });
-            table += '</tbody></table>';
-            container.innerHTML = table;
-
-            container.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = e.target.dataset.id;
-                    let products = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-                    products = products.filter(p => p.id !== id);
-                    localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
-                    loadAdminProducts();
+            try {
+                const supabaseProducts = await getProducts();
+                if (supabaseProducts.length === 0) {
+                    container.innerHTML = '<p style="color: #004d00; text-align: center;">No hay productos agregados por el administrador.</p>';
+                    return;
+                }
+                let table = '<table><thead><tr><th>ID</th><th>Nombre</th><th></th></tr></thead><tbody>';
+                supabaseProducts.forEach(p => {
+                    table += `<tr>
+                        <td>${p.id}</td>
+                        <td>${p.name}</td>
+                        <td><button class="delete-btn" data-id="${p.id}">Eliminar</button></td>
+                    </tr>`;
                 });
-            });
+                table += '</tbody></table>';
+                container.innerHTML = table;
+            } catch {
+                const adminProducts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+                if (adminProducts.length === 0) {
+                    container.innerHTML = '<p style="color: #004d00; text-align: center;">No hay productos agregados por el administrador.</p>';
+                    return;
+                }
+                let table = '<table><thead><tr><th>ID</th><th>Nombre</th><th></th></tr></thead><tbody>';
+                adminProducts.forEach(p => {
+                    table += `<tr>
+                        <td>${p.id}</td>
+                        <td>${p.name}</td>
+                        <td><button class="delete-btn" data-id="${p.id}">Eliminar</button></td>
+                    </tr>`;
+                });
+                table += '</tbody></table>';
+                container.innerHTML = table;
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -129,13 +137,12 @@
 
             valoracionInput.value = '';
 
-            form.addEventListener('submit', (e) => {
+            form.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
                 const name = document.getElementById('product-name').value.trim();
                 const description = document.getElementById('product-description').value.trim();
                 const image = document.getElementById('product-image').value.trim();
-                const id = idInput.value;
 
                 if (!name || !description || !image) {
                     alert('Completa todos los campos obligatorios.');
@@ -143,16 +150,21 @@
                 }
 
                 const newProduct = {
-                    id: id,
                     name: name,
                     description: description,
                     image: image,
-                    valoracion: null
                 };
 
-                const adminProducts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-                adminProducts.push(newProduct);
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(adminProducts));
+                try {
+                    await insertProduct(newProduct);
+                    successMsg.textContent = 'Producto agregado a Supabase correctamente';
+                } catch (err) {
+                    console.warn('Error al enviar a Supabase, guardando solo local:', err);
+                    const adminProducts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+                    adminProducts.push({ ...newProduct, id: idInput.value, valoracion: null });
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(adminProducts));
+                    successMsg.textContent = 'Producto guardado localmente (Supabase no disponible)';
+                }
 
                 form.reset();
                 successMsg.classList.add('show');
