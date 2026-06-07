@@ -1,0 +1,33 @@
+const SUPABASE_URL = 'https://cfkucfmwbbpqyeehiknh.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNma3VjZm13YmJwcXllZWhpa25oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4MjAyMDYsImV4cCI6MjA5NjM5NjIwNn0.gIYLsWQigFkVQisfXnWcWeOVjToHRIoD5HlPqOF3zM4';
+
+async function supabaseFetch(endpoint, options = {}) {
+  const url = `${SUPABASE_URL}${endpoint}`;
+  const res = await fetch(url, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      ...options.headers,
+    },
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Supabase error ${res.status}: ${err}`);
+  }
+  const text = await res.text();
+  return text ? JSON.parse(text) : null;
+}
+
+async function insertProduct(product) {
+  return supabaseFetch('/rest/v1/products', {
+    method: 'POST',
+    body: JSON.stringify(product),
+    headers: { 'Prefer': 'return=minimal' },
+  });
+}
+
+async function getProducts() {
+  return supabaseFetch('/rest/v1/products?select=*');
+}
