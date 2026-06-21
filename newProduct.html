@@ -43,7 +43,8 @@
 
             <div class="form-group">
                 <label for="product-image">Imagen del producto</label>
-                <input type="file" id="product-image" accept="image/*" required>
+                <input type="file" id="product-image" accept="image/*">
+                <div id="image-preview" style="display:none; margin-top:8px;"></div>
             </div>
 
             <div class="form-group hidden">
@@ -68,6 +69,7 @@
     <script src="script.js"></script>
     <script>
         const STORAGE_KEY = 'admin_products';
+        let editingId = null;
 
         function getNextId(callback) {
             fetch('products.json')
@@ -89,109 +91,108 @@
                 });
         }
 
-        /*
-        async function loadAdminProducts() {
-            const container = document.getElementById('admin-products-container');
-
-            try {
-                const supabaseProducts = await getProducts();
-                if (supabaseProducts.length === 0) {
-                    container.innerHTML = '<p style="color: #004d00; text-align: center;'>No hay productos agregados por el administrador.</p>';
-                    return;
-                }
-                let table = '<table><thead><tr><th>ID</th><th>Nombre</th><th></th></tr></thead><tbody>';
-                supabaseProducts.forEach(p => {
-                    table += `<tr>
-                        <td>${p.id}</td>
-                        <td>${p.name}</td>
-                        <td><button class="delete-btn" data-id="${p.id}">Eliminar</button></td>
-                    </tr>`;
-                });
-                table += '</tbody></table>';
-                container.innerHTML = table;
-            } catch {
-                const adminProducts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-                if (adminProducts.length === 0) {
-                    container.innerHTML = '<p style="color: #004d00; text-align: center;'>No hay productos agregados por el administrador.</p>';
-                    return;
-                }
-                let table = '<table><thead><tr><th>ID</th><th>Nombre</th><th></th></tr></thead><tbody>';
-                adminProducts.forEach(p => {
-                    table += `<tr>
-                        <td>${p.id}</td>
-                        <td>${p.name}</td>
-                        <td><button class="delete-btn" data-id="${p.id}">Eliminar</button></td>
-                    </tr>`;
-                });
-                table += '</tbody></table>';
-                container.innerHTML = table;
-            }
-        }
-        */
-
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('product-form');
+            const formTitle = form.querySelector('h2');
             const idInput = document.getElementById('product-id');
             const valoracionInput = document.getElementById('product-valoracion');
             const successMsg = document.getElementById('success-msg');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const imageInput = document.getElementById('product-image');
+            const imagePreview = document.getElementById('image-preview');
 
-            getNextId((newId) => {
-                idInput.value = newId;
-            });
+            const params = new URLSearchParams(window.location.search);
+            editingId = params.get('id');
 
-            valoracionInput.value = '';
+            if (editingId) {
+                formTitle.textContent = 'Editar Producto';
+                submitBtn.textContent = 'Actualizar Producto';
+                imageInput.required = false;
+                idInput.value = editingId;
+
+                getProduct(editingId).then(product => {
+                    if (!product) {
+                        alert('Producto no encontrado');
+                        window.location.href = 'backoffice.html';
+                        return;
+                    }
+                    document.getElementById('product-name').value = product.name || '';
+                    document.getElementById('product-description').value = product.description || '';
+                    if (product.image) {
+                        imagePreview.innerHTML = `<img src="${product.image}" alt="Vista previa" style="max-width:200px;border-radius:4px;">`;
+                        imagePreview.style.display = 'block';
+                        imagePreview.dataset.currentImage = product.image;
+                    }
+                });
+            } else {
+                getNextId((newId) => {
+                    idInput.value = newId;
+                });
+                valoracionInput.value = '';
+            }
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
                 const name = document.getElementById('product-name').value.trim();
                 const description = document.getElementById('product-description').value.trim();
-                const imageFile = document.getElementById('product-image').files[0];
+                const imageFile = imageInput.files[0];
 
-                if (!name || !description || !imageFile) {
+                if (!name || !description) {
                     alert('Completa todos los campos obligatorios.');
                     return;
                 }
 
-                let imageUrl;
-                try {
-                    imageUrl = await uploadImage(imageFile);
-                } catch (err) {
-                    console.error('Error al subir la imagen:', err);
-                    alert('Error al subir la imagen. Intenta de nuevo.');
+                if (!editingId && !imageFile) {
+                    alert('Debes seleccionar una imagen.');
                     return;
                 }
 
-                const newProduct = {
-                    name: name,
-                    description: description,
-                    image: imageUrl,
-                };
-
-                try {
-                    await insertProduct(newProduct);
-                    successMsg.textContent = 'Producto agregado a Supabase correctamente';
-                } catch (err) {
-                    console.warn('Error al enviar a Supabase, guardando solo local:', err);
-                    const adminProducts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-                    adminProducts.push({ ...newProduct, id: idInput.value, valoracion: null, image: imageUrl });
-                    localStorage.setItem(STORAGE_KEY, JSON.stringify(adminProducts));
-                    successMsg.textContent = 'Producto guardado localmente (Supabase no disponible)';
+                let imageUrl;
+                if (imageFile) {
+                    try {
+                        imageUrl = await uploadImage(imageFile);
+                    } catch (err) {
+                        console.error('Error al subir la imagen:', err);
+                        alert('Error al subir la imagen. Intenta de nuevo.');
+                        return;
+                    }
+                } else if (editingId) {
+                    imageUrl = imagePreview.dataset.currentImage || '';
                 }
 
-                form.reset();
+                const productData = { name, description, image: imageUrl };
+
+                if (editingId) {
+                    try {
+                        await updateProduct(editingId, productData);
+                        successMsg.textContent = 'Producto actualizado correctamente';
+                    } catch (err) {
+                        console.warn('Error al actualizar en Supabase:', err);
+                        successMsg.textContent = 'Error al actualizar el producto';
+                    }
+                } else {
+                    try {
+                        await insertProduct(productData);
+                        successMsg.textContent = 'Producto agregado a Supabase correctamente';
+                    } catch (err) {
+                        console.warn('Error al enviar a Supabase, guardando solo local:', err);
+                        const adminProducts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+                        adminProducts.push({ ...productData, id: idInput.value, valoracion: null });
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(adminProducts));
+                        successMsg.textContent = 'Producto guardado localmente (Supabase no disponible)';
+                    }
+
+                    form.reset();
+                    getNextId((nextId) => {
+                        idInput.value = nextId;
+                    });
+                    valoracionInput.value = '';
+                }
+
                 successMsg.classList.add('show');
                 setTimeout(() => successMsg.classList.remove('show'), 3000);
-
-                getNextId((nextId) => {
-                    idInput.value = nextId;
-                });
-                valoracionInput.value = '';
-
-                // loadAdminProducts(); // comentado temporalmente
             });
-
-            // loadAdminProducts(); // comentado temporalmente
         });
     </script>
 </body>

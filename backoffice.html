@@ -152,7 +152,7 @@
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.addEventListener('click', async (e) => {
                     const id = e.target.dataset.id;
-                    await showModal('alert', `Editar producto ID ${id} - Próximamente disponible.`);
+                    window.location.href = `newProduct.html?id=${id}`;
                 });
             });
         }

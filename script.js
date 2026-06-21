@@ -32,6 +32,11 @@ async function getProducts() {
   return supabaseFetch('/rest/v1/products?select=*');
 }
 
+async function getProduct(id) {
+  const products = await supabaseFetch(`/rest/v1/products?id=eq.${id}&select=*`);
+  return products.length > 0 ? products[0] : null;
+}
+
 async function deleteProduct(id) {
   return supabaseFetch(`/rest/v1/products?id=eq.${id}`, {
     method: 'DELETE',
