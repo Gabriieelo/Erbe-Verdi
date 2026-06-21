@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erbe Verdi - Backoffice</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="icons/mate.png" type="image/png">
+</head>
+<body>
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-box">
+            <h3 id="modal-title">Erbe Verdi</h3>
+            <p id="modal-message">Mensaje</p>
+            <div id="modal-actions" class="modal-actions"></div>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="brand">
+            <h1>Erbe Verdi</h1>
+            <img src="icons/matecito.png" alt="Matecito" class="brand-icon">
+        </div>
+        <div class="nav-buttons">
+            <a href="favorite.html" class="star-btn">★</a>
+            <a href="index.html"><button>Inicio</button></a>
+            <a href="newProduct.html"><button>Agregar</button></a>
+            <a href="profile.html"><button>Perfil</button></a>
+            <a href="us.html"><button>Nosotros</button></a>
+        </div>
+    </nav>
+
+    <div class="backoffice-container">
+        <div class="backoffice-card">
+            <h2>Backoffice - Productos</h2>
+
+            <div class="backoffice-filter">
+                <input type="text" id="filter-id" placeholder="Filtrar por ID/Nombre...">
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table class="backoffice-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-tbody">
+                        <tr>
+                            <td colspan="4" class="backoffice-loading">Cargando productos...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        let allProducts = [];
+
+        function showModal(type, message, title = 'Erbe Verdi') {
+            return new Promise((resolve) => {
+                const overlay = document.getElementById('modal-overlay');
+                document.getElementById('modal-title').textContent = title;
+                document.getElementById('modal-message').textContent = message;
+                const actions = document.getElementById('modal-actions');
+                actions.innerHTML = '';
+
+                if (type === 'confirm') {
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'modal-btn confirm-delete';
+                    deleteBtn.textContent = 'Eliminar';
+                    deleteBtn.addEventListener('click', () => {
+                        overlay.classList.remove('show');
+                        resolve(true);
+                    });
+                    const cancelBtn = document.createElement('button');
+                    cancelBtn.className = 'modal-btn cancel';
+                    cancelBtn.textContent = 'Cancelar';
+                    cancelBtn.addEventListener('click', () => {
+                        overlay.classList.remove('show');
+                        resolve(false);
+                    });
+                    actions.appendChild(deleteBtn);
+                    actions.appendChild(cancelBtn);
+                } else {
+                    const okBtn = document.createElement('button');
+                    okBtn.className = 'modal-btn ok';
+                    okBtn.textContent = 'OK';
+                    okBtn.addEventListener('click', () => {
+                        overlay.classList.remove('show');
+                        resolve();
+                    });
+                    actions.appendChild(okBtn);
+                }
+
+                overlay.classList.add('show');
+            });
+        }
+
+        async function loadProducts() {
+            const tbody = document.getElementById('products-tbody');
+            try {
+                const data = await getProducts();
+                allProducts = data || [];
+                renderProducts(allProducts);
+            } catch (err) {
+                console.error('Error al cargar productos:', err);
+                tbody.innerHTML = '<tr><td colspan="4" class="backoffice-empty">Error al cargar productos desde Supabase.</td></tr>';
+            }
+        }
+
+        function renderProducts(products) {
+            const tbody = document.getElementById('products-tbody');
+            if (products.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="backoffice-empty">No hay productos disponibles.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = products.map(p => `
+                <tr>
+                    <td>${p.id}</td>
+                    <td>${p.name}</td>
+                    <td class="desc-cell">${p.description || ''}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="edit-btn" data-id="${p.id}">Editar</button>
+                            <button class="delete-btn" data-id="${p.id}">Eliminar</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    const id = e.target.dataset.id;
+                    const confirmed = await showModal('confirm', `¿Estás seguro de eliminar el producto ID ${id}?`);
+                    if (!confirmed) return;
+                    try {
+                        await deleteProduct(id);
+                        await showModal('alert', `Producto ID ${id} eliminado correctamente.`);
+                        loadProducts();
+                    } catch (err) {
+                        await showModal('alert', `Error al eliminar el producto: ${err.message}`);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    const id = e.target.dataset.id;
+                    await showModal('alert', `Editar producto ID ${id} - Próximamente disponible.`);
+                });
+            });
+        }
+
+        document.getElementById('filter-id').addEventListener('input', (e) => {
+            const filter = e.target.value.trim();
+            if (!filter) {
+                renderProducts(allProducts);
+                return;
+            }
+            const filtered = allProducts.filter(p =>
+                String(p.id).toLowerCase().includes(filter.toLowerCase())
+                || p.name.toLowerCase().includes(filter.toLowerCase())
+            );
+            renderProducts(filtered);
+        });
+
+        document.addEventListener('DOMContentLoaded', loadProducts);
+    </script>
+</body>
+</html>

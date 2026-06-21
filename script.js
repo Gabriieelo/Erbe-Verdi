@@ -32,6 +32,19 @@ async function getProducts() {
   return supabaseFetch('/rest/v1/products?select=*');
 }
 
+async function deleteProduct(id) {
+  return supabaseFetch(`/rest/v1/products?id=eq.${id}`, {
+    method: 'DELETE',
+  });
+}
+
+async function updateProduct(id, updates) {
+  return supabaseFetch(`/rest/v1/products?id=eq.${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify(updates),
+  });
+}
+
 async function uploadImage(file) {
   const ext = file.name.split('.').pop();
   const fileName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;

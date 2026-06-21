@@ -555,3 +555,184 @@ main h2 {
         padding: 1.5rem;
     }
 }
+
+/* backoffice */
+.backoffice-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+.backoffice-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.backoffice-card h2 {
+    color: #006400;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.backoffice-filter {
+    margin-bottom: 1.5rem;
+}
+.backoffice-filter input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #006400;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.backoffice-filter input:focus {
+    outline: none;
+    border-color: #90EE90;
+}
+.backoffice-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.backoffice-table th,
+.backoffice-table td {
+    padding: 0.75rem 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: #004d00;
+}
+.backoffice-table th {
+    color: #006400;
+    font-weight: bold;
+    white-space: nowrap;
+}
+.backoffice-table td {
+    font-size: 0.9rem;
+}
+.backoffice-table .desc-cell {
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.action-buttons {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: nowrap;
+}
+.edit-btn {
+    background-color: #006400;
+    color: #fff;
+    border: none;
+    padding: 0.35rem 0.7rem;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+.edit-btn:hover {
+    background-color: #004d00;
+}
+.delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 0.35rem 0.7rem;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+.delete-btn:hover {
+    background-color: #c82333;
+}
+.backoffice-empty {
+    color: #004d00;
+    text-align: center;
+    padding: 2rem;
+}
+.backoffice-loading {
+    color: #004d00;
+    text-align: center;
+    padding: 2rem;
+}
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-overlay.show {
+    display: flex;
+}
+.modal-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+.modal-box h3 {
+    color: #006400;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+.modal-box p {
+    color: #004d00;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+.modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+.modal-btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.modal-btn.confirm-delete {
+    background-color: #dc3545;
+    color: #fff;
+}
+.modal-btn.confirm-delete:hover {
+    background-color: #c82333;
+}
+.modal-btn.cancel {
+    background-color: #fff;
+    color: #006400;
+    border: 2px solid #006400;
+}
+.modal-btn.cancel:hover {
+    background-color: #f0fff0;
+}
+.modal-btn.ok {
+    background-color: #006400;
+    color: #fff;
+}
+.modal-btn.ok:hover {
+    background-color: #004d00;
+}
+@media (max-width: 768px) {
+    .backoffice-table th,
+    .backoffice-table td {
+        padding: 0.5rem 0.3rem;
+        font-size: 0.8rem;
+    }
+    .backoffice-table .desc-cell {
+        max-width: 120px;
+    }
+    .edit-btn,
+    .delete-btn {
+        padding: 0.25rem 0.4rem;
+        font-size: 0.75rem;
+    }
+}
