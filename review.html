@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,15 @@
     <link rel="stylesheet" href="index.css">
     <link rel="icon" href="icons/mate.png" type="image/png">
 </head>
+
 <body>
     <nav class="navbar">
-        <h1>Erbe Verdi Opinion</h1>
+        <div class="brand">
+            <h1>Erbe Verdi Opinion</h1>
+            <img src="icons/mate.png" alt="Matecito" class="brand-icon">
+        </div>
         <div class="nav-buttons">
-            
+
             <a href="favorite.html" class="star-btn">★</a>
             <a href="us.html"><button>Nosotros</button></a>
             <a href="profile.html"><button>Perfil</button></a>
@@ -22,7 +27,7 @@
     <main>
         <form action="/submit-review" method="POST" class="review-form" enctype="multipart/form-data">
             <h2>Deja la reseña de tu yerba favorita</h2>
-            
+
             <div class="form-group">
                 <label for="nombre-yerba">Nombre yerba</label>
                 <div class="autocomplete-wrapper">
@@ -49,7 +54,7 @@
                 </div>
             </div>
 
-           <!--  <div class="form-group">
+            <!--  <div class="form-group">
                 <label for="foto-yerba">Foto de la yerba</label>
                 <input type="file" id="foto-yerba" name="foto_yerba" accept="image/*">
             </div> -->
@@ -154,10 +159,12 @@
             display: inline-block;
             width: 100%;
         }
+
         .autocomplete-wrapper input {
             width: 100%;
             padding-right: 30px;
         }
+
         .dropdown-arrow {
             position: absolute;
             right: 10px;
@@ -168,6 +175,7 @@
             color: #666;
             user-select: none;
         }
+
         .dropdown-options {
             position: absolute;
             top: 100%;
@@ -184,31 +192,38 @@
             display: none;
             z-index: 1000;
         }
+
         .dropdown-options li {
             padding: 10px;
             cursor: pointer;
         }
+
         .dropdown-options li:hover {
             background: #f0f0f0;
         }
+
         .star-rating {
             display: flex;
             flex-direction: row;
             gap: 5px;
             cursor: pointer;
         }
+
         .star {
             font-size: 30px;
             color: #ccc;
             transition: color 0.2s;
         }
+
         .star.active {
             color: #ffd700;
         }
+
         .star:hover {
             color: #ffc107;
         }
     </style>
-    
+
 </body>
+
 </html>
