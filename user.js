@@ -20,7 +20,7 @@ function togglePassword(id) {
 async function registerUser(name, mail, password) {
   return supabaseFetch('/rest/v1/users', {
     method: 'POST',
-    body: JSON.stringify({ name, mail, password, role: 'USER' }),
+    body: JSON.stringify({ name, mail, password, rol: 'USER' }),
     headers: { 'Prefer': 'return=minimal' },
   });
 }
@@ -67,9 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       await registerUser(name, mail, password);
-      successEl.textContent = 'Usuario creado correctamente. Ya puedes iniciar sesión.';
-      successEl.classList.remove('hidden');
-      document.getElementById('register-form').reset();
+      const user = await loginUser(mail, password);
+      if (user) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        window.location.href = 'index.html';
+      }
     } catch (err) {
       errorEl.textContent = 'Error al registrar: ' + err.message;
       errorEl.classList.remove('hidden');

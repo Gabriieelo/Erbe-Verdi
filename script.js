@@ -78,9 +78,9 @@ function getCurrentUser() {
   return data ? JSON.parse(data) : null;
 }
 
-function hasRole(role) {
+function hasRole(rol) {
   const user = getCurrentUser();
-  return user && user.role === role;
+  return user && user.rol === rol;
 }
 
 function isAdmin() {
