@@ -20,7 +20,7 @@ function togglePassword(id) {
 async function registerUser(name, mail, password) {
   return supabaseFetch('/rest/v1/users', {
     method: 'POST',
-    body: JSON.stringify({ name, mail, password }),
+    body: JSON.stringify({ name, mail, password, role: 'USER' }),
     headers: { 'Prefer': 'return=minimal' },
   });
 }
