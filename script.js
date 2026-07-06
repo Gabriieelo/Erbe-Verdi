@@ -72,3 +72,24 @@ async function uploadImage(file) {
 
   return `${SUPABASE_URL}/storage/v1/object/public/product-images/${fileName}`;
 }
+
+function getCurrentUser() {
+  const data = localStorage.getItem('currentUser');
+  return data ? JSON.parse(data) : null;
+}
+
+function updateAuthButton() {
+  const container = document.getElementById('auth-btn-container');
+  if (!container) return;
+  const user = getCurrentUser();
+  if (user) {
+    container.innerHTML = '<button id="logout-btn">Cerrar Sesión</button>';
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      document.getElementById('logout-modal').classList.add('show');
+    });
+  } else {
+    container.innerHTML = '<a href="user.html"><button>Iniciar Sesión</button></a>';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', updateAuthButton);
