@@ -78,12 +78,25 @@ function getCurrentUser() {
   return data ? JSON.parse(data) : null;
 }
 
+function hasRole(rol) {
+  const user = getCurrentUser();
+  return user && user.rol === rol;
+}
+
+function isAdmin() {
+  return hasRole('ADMIN');
+}
+
 function updateAuthButton() {
   const container = document.getElementById('auth-btn-container');
   if (!container) return;
   const user = getCurrentUser();
   if (user) {
-    container.innerHTML = '<button id="logout-btn">Cerrar Sesión</button>';
+    let buttons = '<button id="logout-btn">Cerrar Sesión</button>';
+    if (isAdmin()) {
+      buttons = '<a href="backoffice.html"><button>Admin</button></a>' + buttons;
+    }
+    container.innerHTML = buttons;
     document.getElementById('logout-btn').addEventListener('click', () => {
       document.getElementById('logout-modal').classList.add('show');
     });
