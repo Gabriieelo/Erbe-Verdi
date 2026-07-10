@@ -45,8 +45,12 @@
         </div>
     </div>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get('id');
+        function slugify(text) {
+            return text.toString().toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)+/g, '');
+        }
 
         function generateStars(rating) {
             if (!rating) return '';
@@ -62,14 +66,15 @@
             return stars;
         }
 
-        if (productId) {
-            // Usar getProducts() desde script.js (Supabase)
+        const productSlug = window.location.hash.slice(1);
+        const container = document.getElementById('product-detail');
+
+        if (productSlug) {
             getProducts()
                 .then(data => {
                     const adminProducts = JSON.parse(localStorage.getItem('admin_products')) || [];
                     const products = [...(data || []), ...adminProducts];
-                    const product = products.find(p => String(p.id) === String(productId));
-                    const container = document.getElementById('product-detail');
+                    const product = products.find(p => slugify(p.name) === productSlug);
 
                     if (product) {
                         container.innerHTML = `
@@ -104,7 +109,7 @@
                     document.getElementById('product-detail').innerHTML = '<p>Error al cargar producto.</p>';
                 });
         } else {
-            document.getElementById('product-detail').innerHTML = '<p>No se ha seleccionado ningún producto</p>';
+            container.innerHTML = '<p>No se ha seleccionado ningún producto</p>';
         }
     </script>
 

@@ -58,17 +58,25 @@
                 container.innerHTML = '<p>No se pudieron cargar los productos desde Supabase.</p>';
             });
 
+        function slugify(text) {
+            return text.toString().toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)+/g, '');
+        }
+
         function renderProducts(list) {
             container.innerHTML = '';
             list.forEach(product => {
                 const card = document.createElement('div');
                 card.className = 'card';
+                const slug = slugify(product.name);
                 card.innerHTML = `
                     <img src="${product.image || 'placeholder.jpg'}" alt="${product.name}">
                     <h3>${product.name}</h3>
                     
                     <div class="card-buttons">
-                        <a href="viewProduct.html?id=${product.id}" class="view-btn">Ver</a>
+                        <a href="viewProduct.html#${slug}" class="view-btn">Ver</a>
                         <button class="add-favorite" data-id="${product.id}">★ Agregar a favoritos</button>
                     </div>
                 `;
