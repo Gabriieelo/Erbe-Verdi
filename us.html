@@ -18,6 +18,7 @@
             <a href="index.html"><button>Inicio</button></a>
             <a href="profile.html"><button>Perfil</button></a>
             <a href="review.html"><button>Reseñas</button></a>
+            <div id="auth-btn-container"></div>
         </div>
     </nav>
     <div class="about-container">
@@ -27,11 +28,33 @@
         <p>Nuestro objetivo es que encuentres la yerba que más te guste a través de las reseñas de otros usuarios, y que te animes a descubrir nuevas opciones que quizás todavía no conocías dentro de Argentina.</p>
         <p>Creemos en una comunidad basada en el respeto, donde cada opinión suma y todos los gustos son bienvenidos.</p>
     </div>
+    <script src="script.js"></script>
+
+    <div id="logout-modal" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Cerrar Sesión</h3>
+            <p>¿Seguro que quieres salir?</p>
+            <div class="modal-actions">
+                <button id="confirm-logout" class="modal-btn confirm-delete">Sí</button>
+                <button id="cancel-logout" class="modal-btn cancel">No</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        const searchInput = document.getElementById('search-input');
-        searchInput.addEventListener('input', (e) => {
-            const filter = e.target.value.toLowerCase();
-            window.location.href = `index.html?search=${filter}`;
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('confirm-logout').addEventListener('click', () => {
+                localStorage.removeItem('currentUser');
+                window.location.reload();
+            });
+            document.getElementById('cancel-logout').addEventListener('click', () => {
+                document.getElementById('logout-modal').classList.remove('show');
+            });
+            document.getElementById('logout-modal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    document.getElementById('logout-modal').classList.remove('show');
+                }
+            });
         });
     </script>
 </body>

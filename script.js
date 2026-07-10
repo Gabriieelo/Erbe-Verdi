@@ -94,7 +94,7 @@ function updateAuthButton() {
   if (user) {
     let buttons = '<button id="logout-btn">Cerrar Sesión</button>';
     if (isAdmin()) {
-      buttons = '<a href="backoffice.html"><button>Admin</button></a>' + buttons;
+      buttons = '<a href="backoffice.html"><button>Backoffice</button></a>' + buttons;
     }
     container.innerHTML = buttons;
     document.getElementById('logout-btn').addEventListener('click', () => {
