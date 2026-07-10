@@ -22,6 +22,7 @@
             <a href="us.html"><button>Nosotros</button></a>
             <a href="profile.html"><button>Perfil</button></a>
             <a href="review.html"><button>Reseñas</button></a>
+            <div id="auth-btn-container"></div>
         </div>
     </nav>
 
@@ -31,6 +32,7 @@
         <p id="no-favorites" class="hidden">No tenés productos favoritos todavía.</p>
     </main>
 
+    <script src="script.js"></script>
     <script>
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         const container = document.getElementById('favorites-container');
@@ -76,6 +78,34 @@
         });
 
         renderFavorites();
+    </script>
+
+    <div id="logout-modal" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Cerrar Sesión</h3>
+            <p>¿Seguro que quieres salir?</p>
+            <div class="modal-actions">
+                <button id="confirm-logout" class="modal-btn confirm-delete">Sí</button>
+                <button id="cancel-logout" class="modal-btn cancel">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('confirm-logout').addEventListener('click', () => {
+                localStorage.removeItem('currentUser');
+                window.location.reload();
+            });
+            document.getElementById('cancel-logout').addEventListener('click', () => {
+                document.getElementById('logout-modal').classList.remove('show');
+            });
+            document.getElementById('logout-modal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    document.getElementById('logout-modal').classList.remove('show');
+                }
+            });
+        });
     </script>
     
 </body>
